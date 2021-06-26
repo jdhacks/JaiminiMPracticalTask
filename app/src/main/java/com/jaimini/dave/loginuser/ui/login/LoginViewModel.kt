@@ -30,9 +30,9 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     }
 
     fun loginDataChanged(username: String, password: String) {
-        if (!isUserNameValid(username) && !username.equals("hello@yogmail.com")) {
+        if (!isUserNameValid(username) || !username.equals("hello@yogmail.com")) {
             _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)
-        } else if (!isPasswordValid(password) && !password.equals("Password@123")) {
+        } else if (!isPasswordValid(password) || !password.equals("Password@123")) {
             _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
         } else {
             _loginForm.value = LoginFormState(isDataValid = true)
