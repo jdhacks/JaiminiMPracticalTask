@@ -14,16 +14,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JaiminiPracticalTask"
         android:usesCleartextTraffic="true">
-        <activity android:name=".splash.SplashScreen"></activity>
-        <activity android:name=".home.ui.HomeActivity"></activity>
-        <activity
-            android:name=".loginuser.ui.login.LoginActivity"
-            android:label="@string/title_activity_login">
+        <activity android:name=".splash.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".home.ui.HomeActivity"></activity>
+        <activity
+            android:name=".loginuser.ui.login.LoginActivity"
+            android:label="@string/title_activity_login">
+
         </activity>
         <activity android:name=".MainActivity"></activity>
     </application>
