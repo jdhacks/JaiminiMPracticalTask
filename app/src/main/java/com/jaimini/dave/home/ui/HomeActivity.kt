@@ -112,17 +112,15 @@ class MyRecyclerViewAdapter(private val clickListener: (ResponseData) -> Unit, v
         viewType: Int
     ): MyRecyclerViewAdapter.MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
+       //UserItemLayBinding.inflate(layoutInflater)
         return MyRecyclerViewAdapter.MyViewHolder(
-            UserItemLayBinding.inflate(layoutInflater),mctx
-/*
             DataBindingUtil.inflate(
                 layoutInflater,
                 R.layout.user_item_lay,
                 parent,
                 false
-            )
-*/
-        )
+
+        ))
     }
 
     override fun getItemCount(): Int {
@@ -140,13 +138,13 @@ class MyRecyclerViewAdapter(private val clickListener: (ResponseData) -> Unit, v
     }
 
 
-    class MyViewHolder(val binding: UserItemLayBinding ,val ctx : Context) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(val binding: UserItemLayBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(user: ResponseData, clickListener: (ResponseData) -> Unit) {
             binding.txttitlename.text = user.title
 
-              Glide.with(binding.imguser.context)
+              Glide.with(binding.imglayuser.context)
                 .load(user.thumbnailUrl)
-                .into(binding.imguser)
+                .into(binding.imglayuser)
             binding.uselistlay.setOnClickListener {
                 clickListener(user)
             }

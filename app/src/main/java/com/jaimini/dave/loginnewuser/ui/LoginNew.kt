@@ -39,7 +39,16 @@ class LoginNew : AppCompatActivity() {
             loginViewModel.validateCredentials(
                 username.text.toString(),
                 password.text.toString()
-            )
+            ).observe(this@LoginNew, object :
+                Observer<Int> {
+                override fun onChanged(t: Int?) {
+                    if (t == 2) {
+                        login.isEnabled=true
+                    }else{
+                             username.error = "Invalid Email Id"
+                        }
+                }
+            })
         }
 
         password.apply {
@@ -47,7 +56,16 @@ class LoginNew : AppCompatActivity() {
                 loginViewModel.validateCredentials(
                     username.text.toString(),
                     password.text.toString()
-                )
+                ).observe(this@LoginNew, object :
+                    Observer<Int> {
+                    override fun onChanged(t: Int?) {
+                        if (t == 2) {
+                            login.isEnabled=true
+                        }else{
+                            password.error = "Invalid Password"
+                        }
+                    }
+                })
             }
 
             setOnEditorActionListener { _, actionId, _ ->
@@ -56,7 +74,17 @@ class LoginNew : AppCompatActivity() {
                         loginViewModel.validateCredentials(
                             username.text.toString(),
                             password.text.toString()
-                        )
+                        ).observe(this@LoginNew, object :
+                            Observer<Int> {
+                            override fun onChanged(t: Int?) {
+                                if (t == 2) {
+                                    login.isEnabled=true
+                                }else{
+                                    username.error = "Invalid Email Id"
+                                    password.error = "Invalid Password"
+                                }
+                            }
+                        })
                 }
                 false
             }
@@ -93,12 +121,14 @@ class LoginNew : AppCompatActivity() {
                                     val editor = sharedPref.edit()
                                     editor.putBoolean("signin", true)
                                     editor.apply()
+
                                     startActivity(
                                         Intent(
                                             this@LoginNew,
                                             HomeActivity::class.java
                                         )
                                     )
+                                    finish()
                                 } else {
                                     Toast.makeText(
                                         this@LoginNew,
