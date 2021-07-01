@@ -8,6 +8,7 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.jaimini.dave.databinding.ActivitySplashScreenBinding
 import com.jaimini.dave.home.ui.HomeActivity
+import com.jaimini.dave.loginnewuser.ui.LoginNew
 import com.jaimini.dave.loginuser.ui.login.LoginActivity
 
 
@@ -25,7 +26,7 @@ class SplashScreen : AppCompatActivity() {
            getSharedPreferences("userPrefs", Context.MODE_PRIVATE)
         if(!sharedPref.getBoolean("signin", false))
         {
-            mintent=Intent(this@SplashScreen, LoginActivity::class.java)
+            mintent=Intent(this@SplashScreen, LoginNew::class.java)
         }else{
             mintent= Intent(this@SplashScreen, HomeActivity::class.java)
         }

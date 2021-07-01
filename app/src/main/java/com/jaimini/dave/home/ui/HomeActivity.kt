@@ -1,6 +1,7 @@
 package com.jaimini.dave.home.ui
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +21,7 @@ import com.bumptech.glide.request.target.Target
 import com.jaimini.dave.R
 import com.jaimini.dave.databinding.ActivityHomeBinding
 import com.jaimini.dave.databinding.UserItemLayBinding
+import com.jaimini.dave.loginnewuser.ui.LoginNew
 import com.jaimini.dave.retrofit.pojo.ResponseData
 
 
@@ -47,6 +49,8 @@ class HomeActivity : AppCompatActivity() {
             val editor = sharedPref.edit()
             editor.putBoolean("signin", false)
             editor.apply()
+            this.finish()
+            startActivity(Intent(this@HomeActivity,LoginNew::class.java))
         })
         listViewModel = ViewModelProviders.of(this@HomeActivity).get(HomeViewModel::class.java)
 
