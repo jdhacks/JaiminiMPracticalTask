@@ -22,7 +22,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imglayuser"
+                android:id="@+id/imgdialoguser"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
@@ -36,6 +36,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="5dp"
+                android:visibility="gone"
                 android:padding="10dp"
                 android:text="Rate Value"
                 android:textColor="#000" />

@@ -42,11 +42,13 @@ class LoginNew : AppCompatActivity() {
             ).observe(this@LoginNew, object :
                 Observer<Int> {
                 override fun onChanged(t: Int?) {
-                    if (t == 2) {
-                        login.isEnabled=true
+                    if (t == 1) {
+                        username.error = "Invalid Email Id"
+
                     }else{
-                             username.error = "Invalid Email Id"
-                        }
+                        login.isEnabled=true
+
+                    }
                 }
             })
         }
@@ -59,11 +61,13 @@ class LoginNew : AppCompatActivity() {
                 ).observe(this@LoginNew, object :
                     Observer<Int> {
                     override fun onChanged(t: Int?) {
-                        if (t == 2) {
-                            login.isEnabled=true
-                        }else{
+                        if (t == 0) {
                             password.error = "Invalid Password"
-                        }
+
+                        }else{
+                            login.isEnabled=true
+
+                         }
                     }
                 })
             }
@@ -77,11 +81,15 @@ class LoginNew : AppCompatActivity() {
                         ).observe(this@LoginNew, object :
                             Observer<Int> {
                             override fun onChanged(t: Int?) {
-                                if (t == 2) {
-                                    login.isEnabled=true
-                                }else{
+                                if(t == 1) {
                                     username.error = "Invalid Email Id"
+
+                                }else if (t == 0) {
                                     password.error = "Invalid Password"
+
+                                }else{
+                                    login.isEnabled=true
+
                                 }
                             }
                         })
@@ -132,7 +140,7 @@ class LoginNew : AppCompatActivity() {
                                 } else {
                                     Toast.makeText(
                                         this@LoginNew,
-                                        "Invalid Username or Password",
+                                        " Username or Password Doesnot Match",
                                         Toast.LENGTH_LONG
                                     ).show()
 

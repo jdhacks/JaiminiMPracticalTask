@@ -113,14 +113,16 @@ class MyRecyclerViewAdapter(private val clickListener: (ResponseData) -> Unit, v
     ): MyRecyclerViewAdapter.MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
        //UserItemLayBinding.inflate(layoutInflater)
-        return MyRecyclerViewAdapter.MyViewHolder(
-            DataBindingUtil.inflate(
-                layoutInflater,
-                R.layout.user_item_lay,
-                parent,
-                false
+        /*DataBindingUtil.inflate(
+            layoutInflater,
+            R.layout.user_item_lay,
+            parent,
+            false
 
-        ))
+        )*/
+        return MyRecyclerViewAdapter.MyViewHolder(
+            UserItemLayBinding.inflate(layoutInflater)
+        )
     }
 
     override fun getItemCount(): Int {

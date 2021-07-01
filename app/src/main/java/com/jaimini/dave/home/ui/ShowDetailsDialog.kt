@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
+import com.bumptech.glide.Glide
 import com.jaimini.dave.R
 import com.jaimini.dave.databinding.LayoutDialogBinding
 import com.jaimini.dave.databinding.UserItemLayBinding
@@ -40,7 +41,11 @@ class ShowDetailsDialog : DialogFragment(){
         savedInstanceState: Bundle?
     ): View? {
         binding= LayoutDialogBinding.inflate(inflater)
+
         binding.txtmurl.text =urlm
+        Glide.with(binding.imgdialoguser.context)
+            .load(urlm)
+            .into(binding.imgdialoguser)
         binding.btnok.setOnClickListener {
             // TODO: Do some task here
             dismiss()
