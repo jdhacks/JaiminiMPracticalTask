@@ -40,7 +40,13 @@ class HomeActivity : AppCompatActivity() {
         userViewModel = ViewModelProviders.of(this@HomeActivity).get(HomeViewModel::class.java)
         setContentView(binding.root)
         binding.btnlogout.setOnClickListener(View.OnClickListener {
-
+            val sharedPref = getSharedPreferences(
+                "userPrefs",
+                Context.MODE_PRIVATE
+            )
+            val editor = sharedPref.edit()
+            editor.putBoolean("signin", false)
+            editor.apply()
         })
         listViewModel = ViewModelProviders.of(this@HomeActivity).get(HomeViewModel::class.java)
 
