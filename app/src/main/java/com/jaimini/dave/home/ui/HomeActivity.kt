@@ -1,41 +1,38 @@
 package com.jaimini.dave.home.ui
 
+/*
+import com.bumptech.glide.load.engine.GlideException
+*/
+/*
+import com.bumptech.glide.request.RequestOptions
+*/
+
+import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.webkit.MimeTypeMap
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide/*
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
-*/
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
-/*
-import com.bumptech.glide.load.engine.GlideException
-*/
 import com.bumptech.glide.request.RequestListener
-/*
-import com.bumptech.glide.request.RequestOptions
-*/
 import com.bumptech.glide.request.target.Target
 import com.jaimini.dave.R
 import com.jaimini.dave.databinding.ActivityHomeBinding
 import com.jaimini.dave.databinding.UserItemLayBinding
 import com.jaimini.dave.loginnewuser.ui.LoginNew
 import com.jaimini.dave.retrofit.pojo.ResponseData
-import java.lang.Exception
 
 
 class HomeActivity : AppCompatActivity() {
@@ -184,8 +181,14 @@ class MyRecyclerViewAdapter(private val clickListener: (ResponseData) -> Unit, v
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
                 .thumbnail(0.5f)
                 .into(binding.imglayuser);
-           */ Glide.with(ctx)
-                .load(user.thumbnailUrl)
+           */
+            val cR: ContentResolver = ctx.getContentResolver()
+            val mime = MimeTypeMap.getSingleton()
+            val type = mime.getExtensionFromMimeType(cR.getType(Uri.parse(user.thumbnailUrl)))
+            val murl=user.thumbnailUrl+"."+type;
+            Log.e("TAG","url"+murl)
+            Glide.with(ctx)
+                .load(user.thumbnailUrl).thumbnail(0.5f)
                   .listener(object :  RequestListener<Drawable>
                   {
                       override fun onLoadFailed(
@@ -207,10 +210,10 @@ class MyRecyclerViewAdapter(private val clickListener: (ResponseData) -> Unit, v
                           isFirstResource: Boolean
                       ): Boolean {
                           binding.imglayuser.setImageDrawable(resource)
-                          return false
+                          return true
                       }
                   }).into(binding.imglayuser)
-
+            //.into(binding.imglayuser)
             binding.uselistlay.setOnClickListener {
                 clickListener(user)
             }
